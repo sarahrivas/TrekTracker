@@ -1,0 +1,310 @@
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ bin/rails:9
+  [1m[35m (2.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  ↳ bin/rails:9
+  [1m[35m (1.7ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+Migrating to CreateUsers (20180709174636)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/migrate/20180709174636_create_users.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180709174636"]]
+  ↳ bin/rails:9
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ bin/rails:9
+Migrating to CreateTrips (20180709174748)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "trips" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "trip_title" varchar, "itinerary" varchar, "rating" float, "user_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, CONSTRAINT "fk_rails_6a33c9e4ea"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+)[0m
+  ↳ db/migrate/20180709174748_create_trips.rb:3
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_trips_on_user_id" ON "trips" ("user_id")[0m
+  ↳ db/migrate/20180709174748_create_trips.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180709174748"]]
+  ↳ bin/rails:9
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ bin/rails:9
+Migrating to CreateDestinations (20180709174803)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE TABLE "destinations" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "user_id" integer, "trip_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, CONSTRAINT "fk_rails_58bc6b63a1"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+, CONSTRAINT "fk_rails_06842df9e1"
+FOREIGN KEY ("trip_id")
+  REFERENCES "trips" ("id")
+)[0m
+  ↳ db/migrate/20180709174803_create_destinations.rb:3
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_destinations_on_user_id" ON "destinations" ("user_id")[0m
+  ↳ db/migrate/20180709174803_create_destinations.rb:3
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_destinations_on_trip_id" ON "destinations" ("trip_id")[0m
+  ↳ db/migrate/20180709174803_create_destinations.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180709174803"]]
+  ↳ bin/rails:9
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Create (0.7ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2018-07-09 17:52:38.677274"], ["updated_at", "2018-07-09 17:52:38.677274"]]
+  ↳ bin/rails:9
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+Started GET "/trips" for 127.0.0.1 at 2018-07-09 16:13:08 -0400
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/leannminakim/.rvm/gems/ruby-2.3.3/gems/activerecord-5.2.0/lib/active_record/log_subscriber.rb:98
+  
+SyntaxError (/Users/leannminakim/trektracker-master/app/controllers/trips_controller.rb:55: syntax error, unexpected keyword_end, expecting end-of-input):
+  
+app/controllers/trips_controller.rb:55: syntax error, unexpected keyword_end, expecting end-of-input
+Started GET "/trips" for 127.0.0.1 at 2018-07-09 16:13:36 -0400
+Processing by TripsController#index as HTML
+  Rendering trips/index.html.erb within layouts/application
+  [1m[36mTrip Load (0.7ms)[0m  [1m[34mSELECT "trips".* FROM "trips"[0m
+  ↳ app/views/trips/index.html.erb:3
+  Rendered trips/index.html.erb within layouts/application (3.6ms)
+Completed 200 OK in 757ms (Views: 742.5ms | ActiveRecord: 1.1ms)
+
+
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+Migrating to ChangeColumnName (20180709202140)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ db/migrate/20180709202140_change_column_name.rb:3
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TEMPORARY TABLE "atrips" ("id" integer NOT NULL PRIMARY KEY, "trip_title" varchar DEFAULT NULL, "itinerary" varchar DEFAULT NULL, "comment" float DEFAULT NULL, "user_id" integer DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/migrate/20180709202140_change_column_name.rb:3
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "tindex_atrips_on_user_id" ON "atrips" ("user_id")[0m
+  ↳ db/migrate/20180709202140_change_column_name.rb:3
+  [1m[35m (0.3ms)[0m  [1m[32mINSERT INTO "atrips" ("id","trip_title","itinerary","comment","user_id","created_at","updated_at")
+                     SELECT "id","trip_title","itinerary","rating","user_id","created_at","updated_at" FROM "trips"[0m
+  ↳ db/migrate/20180709202140_change_column_name.rb:3
+  [1m[35m (1.0ms)[0m  [1m[35mDROP TABLE "trips"[0m
+  ↳ db/migrate/20180709202140_change_column_name.rb:3
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "trips" ("id" integer NOT NULL PRIMARY KEY, "trip_title" varchar DEFAULT NULL, "itinerary" varchar DEFAULT NULL, "comment" float DEFAULT NULL, "user_id" integer DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/migrate/20180709202140_change_column_name.rb:3
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_trips_on_user_id" ON "trips" ("user_id")[0m
+  ↳ db/migrate/20180709202140_change_column_name.rb:3
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "trips" ("id","trip_title","itinerary","comment","user_id","created_at","updated_at")
+                     SELECT "id","trip_title","itinerary","comment","user_id","created_at","updated_at" FROM "atrips"[0m
+  ↳ db/migrate/20180709202140_change_column_name.rb:3
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "atrips"[0m
+  ↳ db/migrate/20180709202140_change_column_name.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (11.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180709202140"]]
+  ↳ bin/rails:9
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Load (2.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/leannminakim/.rvm/gems/ruby-2.3.3/bin/rake:23
+Migrating to RemoveCommentFromTrips (20180709202601)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/leannminakim/.rvm/gems/ruby-2.3.3/bin/rake:23
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ db/migrate/20180709202601_remove_comment_from_trips.rb:3
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TEMPORARY TABLE "atrips" ("id" integer NOT NULL PRIMARY KEY, "trip_title" varchar DEFAULT NULL, "itinerary" varchar DEFAULT NULL, "comment" float DEFAULT NULL, "user_id" integer DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/migrate/20180709202601_remove_comment_from_trips.rb:3
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "tindex_atrips_on_user_id" ON "atrips" ("user_id")[0m
+  ↳ db/migrate/20180709202601_remove_comment_from_trips.rb:3
+  [1m[35m (0.3ms)[0m  [1m[32mINSERT INTO "atrips" ("id","trip_title","itinerary","comment","user_id","created_at","updated_at")
+                     SELECT "id","trip_title","itinerary","comment","user_id","created_at","updated_at" FROM "trips"[0m
+  ↳ db/migrate/20180709202601_remove_comment_from_trips.rb:3
+  [1m[35m (0.6ms)[0m  [1m[35mDROP TABLE "trips"[0m
+  ↳ db/migrate/20180709202601_remove_comment_from_trips.rb:3
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "trips" ("id" integer NOT NULL PRIMARY KEY, "trip_title" varchar DEFAULT NULL, "itinerary" varchar DEFAULT NULL, "user_id" integer DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/migrate/20180709202601_remove_comment_from_trips.rb:3
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_trips_on_user_id" ON "trips" ("user_id")[0m
+  ↳ db/migrate/20180709202601_remove_comment_from_trips.rb:3
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "trips" ("id","trip_title","itinerary","user_id","created_at","updated_at")
+                     SELECT "id","trip_title","itinerary","user_id","created_at","updated_at" FROM "atrips"[0m
+  ↳ db/migrate/20180709202601_remove_comment_from_trips.rb:3
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "atrips"[0m
+  ↳ db/migrate/20180709202601_remove_comment_from_trips.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180709202601"]]
+  ↳ /Users/leannminakim/.rvm/gems/ruby-2.3.3/bin/rake:23
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/leannminakim/.rvm/gems/ruby-2.3.3/bin/rake:23
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ /Users/leannminakim/.rvm/gems/ruby-2.3.3/bin/rake:23
+  [1m[35m (0.9ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/leannminakim/.rvm/gems/ruby-2.3.3/bin/rake:23
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/leannminakim/.rvm/gems/ruby-2.3.3/bin/rake:23
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/leannminakim/.rvm/gems/ruby-2.3.3/bin/rake:23
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/leannminakim/.rvm/gems/ruby-2.3.3/bin/rake:23
+Migrating to AddCommentToTrips (20180709202759)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/leannminakim/.rvm/gems/ruby-2.3.3/bin/rake:23
+  [1m[35m (0.7ms)[0m  [1m[35mALTER TABLE "trips" ADD "comment" varchar[0m
+  ↳ db/migrate/20180709202759_add_comment_to_trips.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180709202759"]]
+  ↳ /Users/leannminakim/.rvm/gems/ruby-2.3.3/bin/rake:23
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/leannminakim/.rvm/gems/ruby-2.3.3/bin/rake:23
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ /Users/leannminakim/.rvm/gems/ruby-2.3.3/bin/rake:23
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/leannminakim/.rvm/gems/ruby-2.3.3/bin/rake:23
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/leannminakim/.rvm/gems/ruby-2.3.3/bin/rake:23
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/leannminakim/.rvm/gems/ruby-2.3.3/bin/rake:23
+Started GET "/artists" for 127.0.0.1 at 2018-07-09 16:30:57 -0400
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/leannminakim/.rvm/gems/ruby-2.3.3/gems/activerecord-5.2.0/lib/active_record/log_subscriber.rb:98
+  
+ActionController::RoutingError (No route matches [GET] "/artists"):
+  
+actionpack (5.2.0) lib/action_dispatch/middleware/debug_exceptions.rb:65:in `call'
+web-console (3.6.2) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.6.2) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.6.2) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.6.2) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.2.0) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.0) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.0) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.0) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.0) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.0) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.0) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.2.0) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.0) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.5) lib/rack/method_override.rb:22:in `call'
+rack (2.0.5) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.0) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.0) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.0) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.0.5) lib/rack/sendfile.rb:111:in `call'
+railties (5.2.0) lib/rails/engine.rb:524:in `call'
+puma (3.11.4) lib/puma/configuration.rb:225:in `call'
+puma (3.11.4) lib/puma/server.rb:632:in `handle_request'
+puma (3.11.4) lib/puma/server.rb:446:in `process_client'
+puma (3.11.4) lib/puma/server.rb:306:in `block in run'
+puma (3.11.4) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/trips/new" for 127.0.0.1 at 2018-07-09 16:31:02 -0400
+Processing by TripsController#new as HTML
+  Rendering trips/new.html.erb within layouts/application
+  Rendered trips/new.html.erb within layouts/application (36.3ms)
+Completed 200 OK in 92ms (Views: 72.3ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/trips/new" for 127.0.0.1 at 2018-07-09 16:32:17 -0400
+Processing by TripsController#new as HTML
+  Rendering trips/new.html.erb within layouts/application
+  Rendered trips/new.html.erb within layouts/application (19.3ms)
+Completed 200 OK in 64ms (Views: 61.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/trips/new" for 127.0.0.1 at 2018-07-09 16:32:45 -0400
+Processing by TripsController#new as HTML
+  Rendering trips/new.html.erb within layouts/application
+  Rendered trips/new.html.erb within layouts/application (4.1ms)
+Completed 200 OK in 42ms (Views: 38.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/trips/new" for 127.0.0.1 at 2018-07-09 16:33:13 -0400
+Processing by TripsController#new as HTML
+  Rendering trips/new.html.erb within layouts/application
+  Rendered trips/new.html.erb within layouts/application (2.3ms)
+Completed 200 OK in 27ms (Views: 24.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/trips" for 127.0.0.1 at 2018-07-09 16:34:03 -0400
+Processing by TripsController#create as JS
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"JPt/8SDqX4fwFYnahnGHdoGlPZooF37kJqPAzCplbOgwboC2N5LP9zovr1OGiLBxlA/V22gWOGus/+bKoQB4nQ==", "trip"=>{"trip_title"=>"New Orleans", "itinerary"=>"HIYA", "comment"=>"AMAZING"}, "commit"=>"Create Trip"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/trips_controller.rb:17
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/trips_controller.rb:17
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/trips_controller.rb:18
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/trips_controller.rb:18
+  Rendering trips/new.html.erb within layouts/application
+  Rendered trips/new.html.erb within layouts/application (3.9ms)
+Completed 200 OK in 79ms (Views: 53.7ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/trips" for 127.0.0.1 at 2018-07-09 16:34:05 -0400
+Processing by TripsController#create as JS
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"JPt/8SDqX4fwFYnahnGHdoGlPZooF37kJqPAzCplbOgwboC2N5LP9zovr1OGiLBxlA/V22gWOGus/+bKoQB4nQ==", "trip"=>{"trip_title"=>"New Orleans", "itinerary"=>"HIYA", "comment"=>"AMAZING"}, "commit"=>"Create Trip"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/trips_controller.rb:17
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/trips_controller.rb:17
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/trips_controller.rb:18
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/trips_controller.rb:18
+  Rendering trips/new.html.erb within layouts/application
+  Rendered trips/new.html.erb within layouts/application (5.7ms)
+Completed 200 OK in 42ms (Views: 38.8ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/trips" for 127.0.0.1 at 2018-07-09 16:34:06 -0400
+Processing by TripsController#create as JS
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"JPt/8SDqX4fwFYnahnGHdoGlPZooF37kJqPAzCplbOgwboC2N5LP9zovr1OGiLBxlA/V22gWOGus/+bKoQB4nQ==", "trip"=>{"trip_title"=>"New Orleans", "itinerary"=>"HIYA", "comment"=>"AMAZING"}, "commit"=>"Create Trip"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/trips_controller.rb:17
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/trips_controller.rb:17
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/trips_controller.rb:18
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/trips_controller.rb:18
+  Rendering trips/new.html.erb within layouts/application
+  Rendered trips/new.html.erb within layouts/application (1.8ms)
+Completed 200 OK in 50ms (Views: 46.2ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/trips" for 127.0.0.1 at 2018-07-09 16:34:07 -0400
+Processing by TripsController#create as JS
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"JPt/8SDqX4fwFYnahnGHdoGlPZooF37kJqPAzCplbOgwboC2N5LP9zovr1OGiLBxlA/V22gWOGus/+bKoQB4nQ==", "trip"=>{"trip_title"=>"New Orleans", "itinerary"=>"HIYA", "comment"=>"AMAZING"}, "commit"=>"Create Trip"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/trips_controller.rb:17
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/trips_controller.rb:17
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/trips_controller.rb:18
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/trips_controller.rb:18
+  Rendering trips/new.html.erb within layouts/application
+  Rendered trips/new.html.erb within layouts/application (2.3ms)
+Completed 200 OK in 39ms (Views: 35.3ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/trips" for 127.0.0.1 at 2018-07-09 16:34:07 -0400
+Processing by TripsController#create as JS
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"JPt/8SDqX4fwFYnahnGHdoGlPZooF37kJqPAzCplbOgwboC2N5LP9zovr1OGiLBxlA/V22gWOGus/+bKoQB4nQ==", "trip"=>{"trip_title"=>"New Orleans", "itinerary"=>"HIYA", "comment"=>"AMAZING"}, "commit"=>"Create Trip"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/trips_controller.rb:17
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/trips_controller.rb:17
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/trips_controller.rb:18
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/trips_controller.rb:18
+  Rendering trips/new.html.erb within layouts/application
+  Rendered trips/new.html.erb within layouts/application (1.7ms)
+Completed 200 OK in 39ms (Views: 34.7ms | ActiveRecord: 0.2ms)
+
+
